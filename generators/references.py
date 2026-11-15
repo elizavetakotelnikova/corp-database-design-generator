@@ -74,7 +74,7 @@ def generate_products(
             unit=random.choice(units),
             is_active=random.random() > 0.05,
             created_at=created,
-            modified_at=created + timedelta(days=random.randint(0, 60)),
+            modified_at = min(created + timedelta(days=random.randint(0, 60)), datetime.utcnow()),
         )
         products.append(product)
 
@@ -94,7 +94,7 @@ def generate_suppliers(fake: Faker, start_id: int = 1) -> List[Supplier]:
             contact_phone=fake.phone_number(),
             is_active=random.random() > 0.08,
             created_at=created,
-            modified_at=created + timedelta(days=random.randint(0, 120)),
+            modified_at = min(created + timedelta(days=random.randint(0, 60)), datetime.utcnow()),
         )
         suppliers.append(supplier)
 
